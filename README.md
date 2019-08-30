@@ -1,2 +1,10 @@
 # Number formatter
-VueJs number formatter component
+VueJs simple number formatter component
+Replace dot to comma 
+
+#Usage
+<number decimalPlaces="3"></number>
+
+#Author
+https://coders.studio
+info@coders.studio
