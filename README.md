@@ -1,6 +1,6 @@
 # Number formatter
-VueJs simple number formatter component
-Replace dot to comma 
+VueJs simple number formatter component. <br>
+Replace dot to comma. 
 
 # Usage
 < number decimalPlaces="3" >< / number >
