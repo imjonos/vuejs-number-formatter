@@ -1,2 +1,2 @@
-# vuejs-number-formatter
+# Number formatter
 VueJs number formatter component
