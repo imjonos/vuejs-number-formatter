@@ -2,9 +2,9 @@
 VueJs simple number formatter component
 Replace dot to comma 
 
-#Usage
-<number decimalPlaces="3"></number>
+# Usage
+< number decimalPlaces="3" >< / number >
 
-#Author
-https://coders.studio
+# Author
+https://coders.studio <br>
 info@coders.studio
