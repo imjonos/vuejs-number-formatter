@@ -1,5 +1,5 @@
 <template>
-	<input type="text" v-model="value" v-on:keypress="isNumber()" v-on:keyup="checkComma()">
+	<input type="text" v-model="inputVal" v-on:keypress="isNumber()" v-on:keyup="checkComma()">
 </template>
 <script type="text/javascript">
 /**
@@ -12,17 +12,23 @@ export default {
 	props: {
 		decimalPlaces: {
 			default: 2
-		}
+		},
+		'value'
 	},
 	data(){
 		return  {
-			value: "",
+			inputVal: this.value,
 			isComma:false
+		}
+	},
+	watch: {
+		inputVal(val) {
+			this.$emit('input', val);
 		}
 	},
 	methods: {
 		isNumber: function() {
-			let number = String(this.value);
+			let number = String(this.inputVal);
 			const {event} = window;
 			let evt = event;
 			let charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -39,12 +45,12 @@ export default {
 			}
 		},
 		checkComma: function() {
-			let number = String(this.value);
+			let number = String(this.inputVal);
 			if(number.indexOf(".")>=0){
 				if(number.indexOf(",")<0) number = number.replace('.', ',');
 				else number = number.replace('.', '');
 			}
-			this.value = number;
+			this.inputVal = number;
 			this.isComma = number.indexOf(",") >= 0;
 			return true;
 		}
