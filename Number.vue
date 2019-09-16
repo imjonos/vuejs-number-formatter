@@ -13,7 +13,9 @@ export default {
 		decimalPlaces: {
 			default: 2
 		},
-		'value'
+    		'value':{
+            		default: ""
+    		}
 	},
 	data(){
 		return  {
