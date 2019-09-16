@@ -19,7 +19,7 @@
         },
         data(){
             return  {
-                inputVal: this.value,
+                inputVal: (this.value)?parseFloat(this.value):"",
                 isComma: false
             }
         },
