@@ -1,10 +1,11 @@
 # Number formatter
-VueJs simple number formatter component
-Replace dot to comma 
+Simple VueJs number formatter component. <br>
+- Replacing dot to comma.<br>
+- Setting decimal places.
 
-#Usage
-<number decimalPlaces="3"></number>
+# Usage
+< number decimalPlaces="3" >< / number >
 
-#Author
-https://coders.studio
+# Author
+https://coders.studio <br>
 info@coders.studio
