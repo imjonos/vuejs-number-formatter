@@ -15,31 +15,47 @@
             },
             value :{
                 default: ""
+            },
+            replaceFrom: {
+                default: ","
+            },
+            replaceTo: {
+                default: "."
             }
         },
         data(){
             return  {
                 inputVal: (this.value)?parseFloat(this.value):"",
-                isComma: false
+                isComma: false,
+                isKeyPressed:false
             }
+        },
+        mounted: function(){
+
         },
         watch: {
             inputVal(val) {
-                this.$emit('input', val);
+                let result = String(val);
+                result = result.replace(',', '.');
+                this.$emit('input', parseFloat(result));
             }
         },
         methods: {
             isNumber: function() {
-                let number = String(this.inputVal);
                 const {event} = window;
                 let evt = event;
+                
+                if(this.isKeyPressed) evt.preventDefault();;
+                this.isKeyPressed = true;
+                let number = String(this.inputVal);
+
                 let charCode = (evt.which) ? evt.which : evt.keyCode;
                 if (
                     (charCode > 31 && (charCode < 48 || charCode > 57))
-                    && charCode !== 44
-                    && charCode !== 46
-                    || (this.isComma && charCode == 44)
-                    || (number.indexOf(",")>0 && number.length-number.indexOf(",")>this.decimalPlaces)
+                    && charCode !== this.replaceFrom.charCodeAt(0)
+                    && charCode !== this.replaceTo.charCodeAt(0)
+                    || (this.isComma && charCode === this.replaceTo.charCodeAt(0))
+                    || (number.indexOf(this.replaceTo)>0 && number.length-number.indexOf(this.replaceTo)>this.decimalPlaces)
                 ) {
                     evt.preventDefault();
                 } else {
@@ -48,12 +64,14 @@
             },
             checkComma: function() {
                 let number = String(this.inputVal);
-                if(number.indexOf(".")>=0){
-                    if(number.indexOf(",")<0) number = number.replace('.', ',');
-                    else number = number.replace('.', '');
+                if(number.indexOf(this.replaceFrom)>=0){
+                    if(number.indexOf(this.replaceTo)<0) number = number.replace(this.replaceFrom, this.replaceTo);
+                    else number = number.replace(this.replaceFrom, '');
                 }
+
                 this.inputVal = number;
-                this.isComma = number.indexOf(",") >= 0;
+                this.isComma = number.indexOf(this.replaceTo) >= 0;
+                this.isKeyPressed = false;
                 return true;
             }
         }
