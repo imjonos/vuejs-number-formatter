@@ -7,5 +7,5 @@ Simple VueJs number formatter component. <br>
 < number decimal-places="3" >< / number >
 
 # Author
-https://coders.studio <br>
-info@coders.studio
+https://toprogram.ru <br>
+info@toprogram.ru
